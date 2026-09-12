@@ -10,6 +10,7 @@ const exploreLinks = [
   ["/work", "Our work"],
   ["/areas", "Service areas"],
   ["/reviews", "Reviews"],
+  ["/annual-inspection", "Annual inspection"],
   ["/resources", "Resources"],
   ["/careers", "Careers"],
 ] as const;

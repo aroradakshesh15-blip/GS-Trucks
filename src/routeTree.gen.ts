@@ -18,6 +18,7 @@ import { Route as FleetRouteImport } from './routes/fleet'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as AnnualInspectionRouteImport } from './routes/annual-inspection'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,7 @@ const FleetRoute = FleetRouteImport.update({ id: '/fleet', path: '/fleet', getPa
 const ResourcesRoute = ResourcesRouteImport.update({ id: '/resources', path: '/resources', getParentRoute: () => rootRouteImport } as any)
 const ReviewsRoute = ReviewsRouteImport.update({ id: '/reviews', path: '/reviews', getParentRoute: () => rootRouteImport } as any)
 const WorkRoute = WorkRouteImport.update({ id: '/work', path: '/work', getParentRoute: () => rootRouteImport } as any)
+const AnnualInspectionRoute = AnnualInspectionRouteImport.update({ id: '/annual-inspection', path: '/annual-inspection', getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -51,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
   '/work': typeof WorkRoute
+  '/annual-inspection': typeof AnnualInspectionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +65,7 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
   '/work': typeof WorkRoute
+  '/annual-inspection': typeof AnnualInspectionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -74,13 +78,14 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
   '/work': typeof WorkRoute
+  '/annual-inspection': typeof AnnualInspectionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work'
+  fullPaths: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work'
-  id: '__root__' | '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work'
+  to: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection'
+  id: '__root__' | '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -93,6 +98,7 @@ export interface RootRouteChildren {
   ResourcesRoute: typeof ResourcesRoute
   ReviewsRoute: typeof ReviewsRoute
   WorkRoute: typeof WorkRoute
+  AnnualInspectionRoute: typeof AnnualInspectionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -124,6 +130,7 @@ declare module '@tanstack/react-router' {
     '/resources': { id: '/resources'; path: '/resources'; fullPath: '/resources'; preLoaderRoute: typeof ResourcesRouteImport; parentRoute: typeof rootRouteImport }
     '/reviews': { id: '/reviews'; path: '/reviews'; fullPath: '/reviews'; preLoaderRoute: typeof ReviewsRouteImport; parentRoute: typeof rootRouteImport }
     '/work': { id: '/work'; path: '/work'; fullPath: '/work'; preLoaderRoute: typeof WorkRouteImport; parentRoute: typeof rootRouteImport }
+    '/annual-inspection': { id: '/annual-inspection'; path: '/annual-inspection'; fullPath: '/annual-inspection'; preLoaderRoute: typeof AnnualInspectionRouteImport; parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -137,6 +144,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesRoute: ResourcesRoute,
   ReviewsRoute: ReviewsRoute,
   WorkRoute: WorkRoute,
+  AnnualInspectionRoute: AnnualInspectionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -21,6 +21,7 @@ const resources = [
   {
     title: "Annual inspection checklist",
     body: "Prepare the unit, catch common issues early and book before the expiry date.",
+    href: "/annual-inspection",
   },
   {
     title: "Winter readiness",

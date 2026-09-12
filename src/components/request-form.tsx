@@ -45,7 +45,7 @@ const inputClass =
 export function RequestForm() {
   const [values, setValues] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<keyof Fields, string>>>({});
-  const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const set = (key: keyof Fields) => (v: string) => {
     setValues((p) => ({ ...p, [key]: v }));
@@ -58,17 +58,18 @@ export function RequestForm() {
     setErrors(next);
     if (Object.keys(next).length > 0) return;
     setState("sending");
-    const subject = `Service request from ${values.firstName} ${values.lastName}`;
-    const body = [
-      `Name: ${values.firstName} ${values.lastName}`,
-      `Email: ${values.email}`,
-      `Phone: ${values.phone}`,
-      `Service: ${values.service}`,
-      "",
-      values.message,
-    ].join("\n");
-    window.location.href = `${BUSINESS.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.setTimeout(() => setState("sent"), 300);
+    try {
+      const res = await fetch("/send-form.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = (await res.json().catch(() => null)) as { success?: boolean } | null;
+      if (!res.ok || !data?.success) throw new Error("Send failed");
+      setState("sent");
+    } catch {
+      setState("error");
+    }
   }
 
   return (
@@ -116,8 +117,8 @@ export function RequestForm() {
               </span>
               <h3 className="mt-7 font-display text-3xl">Request received</h3>
               <p className="mt-4 max-w-sm text-muted-foreground">
-                Thanks {values.firstName}. Your email client should be open with the request
-                details. For an emergency, call {BUSINESS.phoneDisplay}.
+                Thanks {values.firstName}. We've emailed your request to the shop and will follow
+                up shortly. For an emergency, call {BUSINESS.phoneDisplay}.
               </p>
               <button
                 type="button"
@@ -227,6 +228,12 @@ export function RequestForm() {
                   </>
                 )}
               </motion.button>
+              {state === "error" && (
+                <p className="mt-4 text-sm text-destructive">
+                  Something went wrong sending your request. Please try again, or call{" "}
+                  {BUSINESS.phoneDisplay}.
+                </p>
+              )}
             </form>
           )}
         </Reveal>
