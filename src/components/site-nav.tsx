@@ -22,6 +22,7 @@ const links = [
   { to: "/fleet", label: "Fleet" },
   { to: "/work", label: "Our work" },
   { to: "/areas", label: "Service areas" },
+  { to: "/annual-inspection", label: "Annual Inspection" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -85,12 +86,12 @@ export function SiteNav() {
             </motion.span>
           </Link>
 
-          <nav className="hidden items-center gap-9 lg:flex">
+          <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
             {links.map((l) => (
               <Link
                 key={l.to}
                 to={l.to}
-                className="group relative font-display text-sm tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
+                className="group relative font-display text-sm font-semibold tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
                 activeProps={{ className: "text-foreground" }}
               >
                 {l.label}
@@ -128,7 +129,7 @@ export function SiteNav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[60] flex flex-col bg-background/97 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-background/97 backdrop-blur-xl lg:hidden"
             initial={{ opacity: 0, clipPath: "circle(0% at 90% 6%)" }}
             animate={{ opacity: 1, clipPath: "circle(140% at 90% 6%)" }}
             exit={{ opacity: 0, clipPath: "circle(0% at 90% 6%)" }}
