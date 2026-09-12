@@ -11,7 +11,7 @@ import { MapPin, Mail, Phone, Clock } from "lucide-react";
 
 const title = "About & Contact — GS Truck & Trailer Repair, Brampton";
 const description =
-  "Talk to the GS Truck & Trailer Repair team in Brampton, ON. Call +1 (416) 918-2630, email gstrucktrailer@gmail.com or request service online.";
+  "Talk to the GS Truck & Trailer Repair team in Brampton, ON. Call +1 (416) 918-2630, email info@gstruckrepair.ca or request service online.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({

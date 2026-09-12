@@ -7,8 +7,8 @@ export const BUSINESS = {
   shortName: "GS Truck",
   phoneDisplay: "+1 (416) 918-2630",
   phoneHref: "tel:+14169182630",
-  email: "gstrucktrailer@gmail.com",
-  emailHref: "mailto:gstrucktrailer@gmail.com",
+  email: "info@gstruckrepair.ca",
+  emailHref: "mailto:info@gstruckrepair.ca",
   address: "18 Knightsbridge Rd, Brampton, ON L6T 3X5",
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=18+Knightsbridge+Rd,+Brampton,+ON+L6T+3X5",
