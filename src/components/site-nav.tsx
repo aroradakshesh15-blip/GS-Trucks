@@ -91,7 +91,7 @@ export function SiteNav() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="group relative font-display text-sm font-semibold tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
+                className="group relative font-display text-sm font-bold tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
                 activeProps={{ className: "text-foreground" }}
               >
                 {l.label}
