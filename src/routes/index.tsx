@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { AnnualInspectionStrip } from "@/components/annual-inspection-strip";
 import { EmergencyCta } from "@/components/emergency-cta";
 import { EmergencyStrip } from "@/components/emergency-strip";
 import { FleetSection } from "@/components/fleet-section";
@@ -64,7 +63,6 @@ function Home() {
           GS Truck &amp; Trailer Repair — 24/7 heavy duty truck and trailer repair in Brampton
         </h1>
         <Hero />
-        <AnnualInspectionStrip />
         <EmergencyStrip />
         <ServicesRail />
         <WhyUs />
