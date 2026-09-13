@@ -116,7 +116,15 @@ export function SiteFooter() {
           <span>
             © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
           </span>
-          <span>Brampton, Ontario · Serving the GTA</span>
+          <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <Link to="/privacy-policy" className="transition-colors hover:text-primary">
+              Privacy Policy
+            </Link>
+            <Link to="/terms-conditions" className="transition-colors hover:text-primary">
+              Terms &amp; Conditions
+            </Link>
+            <span>Mississauga, Ontario · Serving the GTA</span>
+          </span>
         </div>
       </div>
     </footer>

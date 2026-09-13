@@ -19,6 +19,8 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as AnnualInspectionRouteImport } from './routes/annual-inspection'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as TermsConditionsRouteImport } from './routes/terms-conditions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +44,8 @@ const ResourcesRoute = ResourcesRouteImport.update({ id: '/resources', path: '/r
 const ReviewsRoute = ReviewsRouteImport.update({ id: '/reviews', path: '/reviews', getParentRoute: () => rootRouteImport } as any)
 const WorkRoute = WorkRouteImport.update({ id: '/work', path: '/work', getParentRoute: () => rootRouteImport } as any)
 const AnnualInspectionRoute = AnnualInspectionRouteImport.update({ id: '/annual-inspection', path: '/annual-inspection', getParentRoute: () => rootRouteImport } as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({ id: '/privacy-policy', path: '/privacy-policy', getParentRoute: () => rootRouteImport } as any)
+const TermsConditionsRoute = TermsConditionsRouteImport.update({ id: '/terms-conditions', path: '/terms-conditions', getParentRoute: () => rootRouteImport } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +58,8 @@ export interface FileRoutesByFullPath {
   '/reviews': typeof ReviewsRoute
   '/work': typeof WorkRoute
   '/annual-inspection': typeof AnnualInspectionRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-conditions': typeof TermsConditionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -66,6 +72,8 @@ export interface FileRoutesByTo {
   '/reviews': typeof ReviewsRoute
   '/work': typeof WorkRoute
   '/annual-inspection': typeof AnnualInspectionRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-conditions': typeof TermsConditionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,13 +87,15 @@ export interface FileRoutesById {
   '/reviews': typeof ReviewsRoute
   '/work': typeof WorkRoute
   '/annual-inspection': typeof AnnualInspectionRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-conditions': typeof TermsConditionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection'
+  fullPaths: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection' | '/privacy-policy' | '/terms-conditions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection'
-  id: '__root__' | '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection'
+  to: '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection' | '/privacy-policy' | '/terms-conditions'
+  id: '__root__' | '/' | '/contact' | '/services' | '/areas' | '/careers' | '/fleet' | '/resources' | '/reviews' | '/work' | '/annual-inspection' | '/privacy-policy' | '/terms-conditions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -99,6 +109,8 @@ export interface RootRouteChildren {
   ReviewsRoute: typeof ReviewsRoute
   WorkRoute: typeof WorkRoute
   AnnualInspectionRoute: typeof AnnualInspectionRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  TermsConditionsRoute: typeof TermsConditionsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -131,6 +143,8 @@ declare module '@tanstack/react-router' {
     '/reviews': { id: '/reviews'; path: '/reviews'; fullPath: '/reviews'; preLoaderRoute: typeof ReviewsRouteImport; parentRoute: typeof rootRouteImport }
     '/work': { id: '/work'; path: '/work'; fullPath: '/work'; preLoaderRoute: typeof WorkRouteImport; parentRoute: typeof rootRouteImport }
     '/annual-inspection': { id: '/annual-inspection'; path: '/annual-inspection'; fullPath: '/annual-inspection'; preLoaderRoute: typeof AnnualInspectionRouteImport; parentRoute: typeof rootRouteImport }
+    '/privacy-policy': { id: '/privacy-policy'; path: '/privacy-policy'; fullPath: '/privacy-policy'; preLoaderRoute: typeof PrivacyPolicyRouteImport; parentRoute: typeof rootRouteImport }
+    '/terms-conditions': { id: '/terms-conditions'; path: '/terms-conditions'; fullPath: '/terms-conditions'; preLoaderRoute: typeof TermsConditionsRouteImport; parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -145,6 +159,8 @@ const rootRouteChildren: RootRouteChildren = {
   ReviewsRoute: ReviewsRoute,
   WorkRoute: WorkRoute,
   AnnualInspectionRoute: AnnualInspectionRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  TermsConditionsRoute: TermsConditionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

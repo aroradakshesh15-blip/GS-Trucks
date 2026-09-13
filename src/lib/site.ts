@@ -1,6 +1,6 @@
 /**
- * Business information extracted verbatim from gstruckandtrailerrepair.com.
- * Do not invent or alter contact details.
+ * Business information for GS Truck & Trailer Repair.
+ * Location sourced from the business's Google Maps listing.
  */
 export const BUSINESS = {
   name: "GS Truck & Trailer Repair",
@@ -9,9 +9,11 @@ export const BUSINESS = {
   phoneHref: "tel:+14169182630",
   email: "info@gstruckrepair.ca",
   emailHref: "mailto:info@gstruckrepair.ca",
-  address: "18 Knightsbridge Rd, Brampton, ON L6T 3X5",
+  address: "6149 Shawson Dr Unit 4, Mississauga, ON L5T 1E4",
   mapsHref:
-    "https://www.google.com/maps/search/?api=1&query=18+Knightsbridge+Rd,+Brampton,+ON+L6T+3X5",
+    "https://www.google.com/maps/search/?api=1&query=G+S+Truck+and+Trailer+Repair,+6149+Shawson+Dr+Unit-+4,+Mississauga,+ON+L5T+1E4",
+  mapsEmbedSrc:
+    "https://www.google.com/maps?q=G+S+Truck+and+Trailer+Repair,+6149+Shawson+Dr+Unit-+4,+Mississauga,+ON+L5T+1E4&output=embed",
   tagline: "24/7 Emergency Roadside Assistance",
   promise:
     "GS Truck and Trailer repair provide excellent trucking solutions, we promise to provide superior trucking solutions.",

@@ -4,14 +4,15 @@ import { EmergencyCta } from "@/components/emergency-cta";
 import { FloatingCall } from "@/components/floating-call";
 import { RequestForm } from "@/components/request-form";
 import { SiteFooter } from "@/components/site-footer";
+import { SiteMap } from "@/components/site-map";
 import { SiteNav } from "@/components/site-nav";
 import { Eyebrow, Reveal, StaggerHeading } from "@/components/motion";
 import { BUSINESS } from "@/lib/site";
-import { MapPin, Mail, Phone, Clock } from "lucide-react";
+import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
-const title = "About & Contact — GS Truck & Trailer Repair, Brampton";
+const title = "About & Contact — GS Truck & Trailer Repair, Mississauga";
 const description =
-  "Talk to the GS Truck & Trailer Repair team in Brampton, ON. Call +1 (416) 918-2630, email info@gstruckrepair.ca or request service online.";
+  "Talk to the GS Truck & Trailer Repair team in Mississauga, ON. Call +1 (416) 918-2630, email info@gstruckrepair.ca or request service online.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -32,7 +33,6 @@ export const Route = createFileRoute("/contact")({
 const details = [
   { icon: Phone, label: "Call", value: BUSINESS.phoneDisplay, href: BUSINESS.phoneHref },
   { icon: Mail, label: "Email", value: BUSINESS.email, href: BUSINESS.emailHref },
-  { icon: MapPin, label: "Shop", value: BUSINESS.address, href: BUSINESS.mapsHref },
   { icon: Clock, label: "Hours", value: "24/7 emergency dispatch" },
 ];
 
@@ -58,7 +58,7 @@ function ContactPage() {
               </p>
             </Reveal>
 
-            <div className="mt-16 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-16 grid gap-px bg-border sm:grid-cols-3">
               {details.map((d) => {
                 const inner = (
                   <>
@@ -83,6 +83,21 @@ function ContactPage() {
                 );
               })}
             </div>
+
+            <Reveal delay={0.2}>
+              <div className="mt-8 border border-border bg-surface-2 p-2">
+                <SiteMap className="h-80 w-full sm:h-96" />
+                <a
+                  href={BUSINESS.mapsHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-2 flex items-center gap-2 p-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <MapPin className="h-4 w-4 text-primary" />
+                  {BUSINESS.address} — Get directions
+                </a>
+              </div>
+            </Reveal>
           </div>
         </section>
 
