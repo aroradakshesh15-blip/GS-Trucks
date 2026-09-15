@@ -292,14 +292,14 @@
   .services-sticky {
     position: relative !important;
     height: auto !important;
-    padding: 3.5rem 0 3rem;
+    padding: 3.5rem 0 3.5rem;
   }
 
   .services-track {
     transform: none !important;
     flex-direction: column;
-    gap: 0.875rem;
-    margin-top: 2rem;
+    gap: 1.125rem;
+    margin-top: 2.25rem;
     padding: 0 1.25rem;
   }
 
@@ -307,7 +307,7 @@
   .services-track > div:last-child {
     width: 100% !important;
     min-height: 0;
-    height: 18rem !important;
+    height: 19rem !important;
   }
 
   .services-progress {

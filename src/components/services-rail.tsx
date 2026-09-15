@@ -52,7 +52,7 @@ export function ServicesRail() {
       <div className="grid-plate pointer-events-none absolute inset-0 opacity-[0.08]" />
       <div className="pointer-events-none absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/60 to-transparent lg:left-[7vw]" />
 
-      <div className="services-sticky sticky top-0 flex h-[100svh] flex-col justify-start overflow-x-hidden pb-8 pt-28 lg:pt-32">
+      <div className="services-sticky sticky top-0 flex h-[100svh] flex-col justify-start overflow-x-hidden pb-10 pt-28 lg:pt-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <div>
@@ -72,11 +72,11 @@ export function ServicesRail() {
                   01 — 06
                 </span>
               </div>
-              <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground/90">
                 Roadside response, shop repair, trailer systems and the diagnostics that keep heavy
                 equipment earning.
               </p>
-              <div className="mt-5 grid grid-cols-2 gap-x-5 gap-y-2 border-t border-border/70 pt-4 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted-foreground sm:grid-cols-3">
+              <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-2.5 border-t border-border/70 pt-4 font-mono text-[0.62rem] uppercase tracking-[0.12em] text-muted-foreground sm:grid-cols-3">
                 {serviceLabels.map((label, i) => (
                   <span key={label} className="flex items-center gap-2">
                     <span className="text-primary">{String(i + 1).padStart(2, "0")}</span>
@@ -89,14 +89,14 @@ export function ServicesRail() {
         </div>
 
         <motion.div
-          className="services-track mt-10 flex gap-5 pl-5 sm:mt-14 sm:gap-6 sm:pl-8"
+          className="services-track mt-12 flex gap-5 pl-5 pr-5 sm:mt-16 sm:gap-6 sm:pl-8 sm:pr-8"
           style={{ x }}
         >
           {FEATURED_SERVICES.map((s, i) => (
             <motion.article
               key={s.title}
               className={cn(
-                "service-card group relative flex h-[min(54vh,30rem)] w-[78vw] shrink-0 flex-col overflow-hidden border border-border/80 bg-[#171b1d] transition-colors hover:border-primary sm:w-[42vw] lg:w-[28vw]",
+                "service-card group relative flex h-[min(54vh,30rem)] w-[78vw] shrink-0 flex-col overflow-hidden border border-border/60 bg-[#171b1d] transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-black/50 sm:w-[42vw] lg:w-[28vw]",
                 i === 0 && "lg:w-[34vw]",
               )}
               initial={{ opacity: 0, y: 36 }}
@@ -110,10 +110,10 @@ export function ServicesRail() {
                   src={serviceImages[i]}
                   alt=""
                   loading="lazy"
-                  className="h-full w-full object-cover opacity-70 transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover opacity-80 transition-transform duration-700 ease-out group-hover:scale-[1.045]"
                 />
                 <span
-                  className="absolute inset-0 bg-gradient-to-t from-[#171b1d] via-transparent to-black/20"
+                  className="absolute inset-0 bg-gradient-to-t from-[#171b1d] via-[#171b1d]/10 to-black/25"
                   aria-hidden
                 />
                 <span className="absolute left-5 top-5 font-mono text-xs tracking-[0.18em] text-primary">
@@ -122,14 +122,14 @@ export function ServicesRail() {
                 <ArrowUpRight className="absolute right-5 top-5 h-5 w-5 text-foreground/70 transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
               </div>
               <div className="relative flex flex-1 flex-col justify-between p-6 sm:p-7">
-                <span className="pointer-events-none absolute -right-2 -top-8 font-display text-[7rem] leading-none text-white/[0.045] transition-colors group-hover:text-primary/[0.12]">
+                <span className="pointer-events-none absolute -right-2 -top-8 font-display text-[7rem] leading-none text-white/[0.04] transition-colors group-hover:text-primary/[0.12]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div className="relative">
-                  <h3 className="max-w-[13ch] text-[clamp(1.8rem,3vw,2.7rem)] font-semibold leading-[0.95]">
+                  <h3 className="max-w-[13ch] text-[clamp(1.8rem,3vw,2.7rem)] font-bold leading-[0.95]">
                     {s.title}
                   </h3>
-                  <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3.5 max-w-xs text-sm leading-relaxed text-muted-foreground/90">
                     {s.detail}
                   </p>
                 </div>
@@ -147,30 +147,30 @@ export function ServicesRail() {
             </motion.article>
           ))}
 
-          <div className="relative flex h-[min(54vh,30rem)] w-[78vw] shrink-0 flex-col justify-between overflow-hidden border border-primary/50 bg-primary/[0.08] p-7 sm:w-[42vw] lg:w-[30vw]">
+          <div className="relative flex h-[min(54vh,30rem)] w-[78vw] shrink-0 flex-col justify-between overflow-hidden border border-primary/50 bg-primary/[0.08] p-7 transition-all duration-300 hover:border-primary hover:shadow-2xl hover:shadow-black/50 sm:w-[42vw] lg:w-[30vw]">
             <span className="pointer-events-none absolute -right-7 -top-10 font-display text-[11rem] leading-none text-primary/[0.08]">
               +
             </span>
             <span className="label-tech text-primary">Complete capability</span>
             <div>
-              <h3 className="max-w-[9ch] text-[clamp(2.2rem,4vw,3.5rem)] font-semibold leading-[0.9]">
+              <h3 className="max-w-[9ch] text-[clamp(2.2rem,4vw,3.5rem)] font-bold leading-[0.9]">
                 Everything else, too
               </h3>
-              <p className="mt-4 text-sm text-muted-foreground">
+              <p className="mt-3.5 text-sm leading-relaxed text-muted-foreground/90">
                 Thirty-plus services across truck, trailer, diagnostics and maintenance.
               </p>
               <Link
                 to="/services"
-                className="mt-7 inline-flex items-center gap-3 bg-primary px-6 py-4 font-display tracking-wide text-primary-foreground"
+                className="group/cta mt-7 inline-flex items-center gap-3 bg-primary px-6 py-4 font-display tracking-wide text-primary-foreground transition-colors hover:bg-hazard"
               >
                 See all services
-                <ArrowUpRight className="h-5 w-5" />
+                <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
               </Link>
             </div>
           </div>
         </motion.div>
 
-        <div className="mx-auto mt-10 w-full max-w-7xl px-5 sm:px-8">
+        <div className="mx-auto mt-8 w-full max-w-7xl px-5 sm:px-8">
           <div className="services-progress h-px w-full bg-border">
             <motion.div className="h-px bg-primary" style={{ width: lineWidth }} />
           </div>
