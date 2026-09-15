@@ -4,10 +4,10 @@
  * Runs on Hostinger's PHP runtime alongside the static build in public_html.
  */
 
-header("Content-Type: application/json; charset=utf-8");
+require_once __DIR__ . "/inc/env.php";
+require_once __DIR__ . "/inc/mail.php";
 
-const TO_EMAIL = "info@gstruckrepair.ca";
-const FROM_EMAIL = "info@gstruckrepair.ca"; // must be a mailbox on your own domain for deliverability
+header("Content-Type: application/json; charset=utf-8");
 
 function respond(bool $success, string $message): void {
     http_response_code($success ? 200 : 400);
@@ -49,6 +49,8 @@ if ($email === "" || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     respond(false, "Invalid email address");
 }
 
+$toEmail = env("TO_EMAIL", "info@gstruckrepair.ca");
+
 $subject = "Service request from {$firstName} {$lastName}";
 $body = "Name: {$firstName} {$lastName}\n"
     . "Email: {$email}\n"
@@ -56,13 +58,7 @@ $body = "Name: {$firstName} {$lastName}\n"
     . "Service: {$service}\n\n"
     . $message;
 
-$headers = [
-    "From: GS Truck Website <" . FROM_EMAIL . ">",
-    "Reply-To: {$firstName} {$lastName} <{$email}>",
-    "Content-Type: text/plain; charset=utf-8",
-];
-
-$sent = mail(TO_EMAIL, $subject, $body, implode("\r\n", $headers));
+$sent = send_mail($toEmail, $subject, $body, "{$firstName} {$lastName} <{$email}>");
 
 if ($sent) {
     respond(true, "Sent");

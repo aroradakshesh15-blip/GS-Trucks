@@ -5,6 +5,7 @@ import { EmergencyStrip } from "@/components/emergency-strip";
 import { FleetSection } from "@/components/fleet-section";
 import { FloatingCall } from "@/components/floating-call";
 import { Hero } from "@/components/hero";
+import { InstantQuote } from "@/components/instant-quote";
 import { RequestForm } from "@/components/request-form";
 import { SafeHands } from "@/components/safe-hands";
 import { ServicesRail } from "@/components/services-rail";
@@ -65,6 +66,7 @@ function Home() {
         <Hero />
         <EmergencyStrip />
         <ServicesRail />
+        <InstantQuote />
         <WhyUs />
         <SafeHands />
         <FleetSection />

@@ -71,6 +71,28 @@ function internal_notification_email(array $booking): array {
     return [$subject, $body];
 }
 
+function quote_request_email(array $quote): array {
+    $services = format_services_list($quote["services"]);
+    $who = $quote["name"] !== "" ? $quote["name"] : "A website visitor";
+
+    $subject = "New Quote Request" . ($quote["name"] !== "" ? " — {$quote["name"]}" : "");
+    $body = "Request type: Instant Quote (WhatsApp)\n\n"
+        . "Name: " . ($quote["name"] !== "" ? $quote["name"] : "Not provided") . "\n"
+        . "Phone: " . ($quote["phone"] !== "" ? $quote["phone"] : "Not provided") . "\n\n"
+        . "Requested services:\n{$services}\n\n"
+        . "Location: {$quote["location"]}\n"
+        . "Preferred date: " . ($quote["preferredDate"] !== "" ? $quote["preferredDate"] : "Not selected") . "\n"
+        . "Preferred time: " . ($quote["preferredTime"] !== "" ? $quote["preferredTime"] : "Not selected") . "\n";
+
+    if ($quote["notes"] !== "") {
+        $body .= "\nNotes:\n{$quote["notes"]}\n";
+    }
+
+    $body .= "\n{$who} also opened WhatsApp to reach the shop directly — no price was shown to them.\n";
+
+    return [$subject, $body];
+}
+
 /** @param "3_day"|"1_day"|"8_hour" $kind */
 function reminder_email(array $booking, string $kind): array {
     $dateHuman = format_date_human($booking["current_cycle_date"], $booking["timezone"]);

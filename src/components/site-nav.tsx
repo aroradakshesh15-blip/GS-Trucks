@@ -87,22 +87,26 @@ export function SiteNav() {
           </Link>
 
           <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
-            {links.map((l) => (
-              <Link
-                key={l.to}
-                to={l.to}
-                className="group relative font-display text-sm font-bold tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
-                activeProps={{ className: "text-foreground" }}
-              >
-                {l.label}
-                <span
-                  className={cn(
-                    "absolute -bottom-1.5 left-0 h-px bg-primary transition-all duration-300 group-hover:w-full",
-                    pathname === l.to ? "w-full" : "w-0",
-                  )}
-                />
-              </Link>
-            ))}
+            {links.map((l) => {
+              const active = pathname === l.to;
+              return (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  aria-current={active ? "page" : undefined}
+                  className="group relative font-display text-[0.95rem] font-extrabold tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground"
+                  activeProps={{ className: "text-foreground" }}
+                >
+                  {l.label}
+                  <span
+                    className={cn(
+                      "absolute -bottom-1.5 left-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full",
+                      active ? "w-full" : "w-0",
+                    )}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -157,7 +161,9 @@ export function SiteNav() {
                   <Link
                     to={l.to}
                     onClick={() => setOpen(false)}
-                    className="block border-b border-border py-5 font-display text-[clamp(2.25rem,10vw,3.5rem)]"
+                    aria-current={pathname === l.to ? "page" : undefined}
+                    className="block border-b border-border py-5 font-display text-[clamp(2.25rem,10vw,3.5rem)] font-bold"
+                    activeProps={{ className: "text-primary" }}
                   >
                     {l.label}
                   </Link>

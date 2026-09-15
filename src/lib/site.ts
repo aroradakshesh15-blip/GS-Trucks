@@ -17,7 +17,15 @@ export const BUSINESS = {
   tagline: "24/7 Emergency Roadside Assistance",
   promise:
     "GS Truck and Trailer repair provide excellent trucking solutions, we promise to provide superior trucking solutions.",
+  /** Digits-only, country code included — matches phoneHref (+1 416 918 2630). */
+  whatsappNumber: "14169182630",
 } as const;
+
+/** wa.me deep link, optionally pre-filled with a message. */
+export function whatsappHref(message?: string): string {
+  const base = `https://wa.me/${BUSINESS.whatsappNumber}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+}
 
 export type ServiceCategory = {
   id: string;
@@ -291,6 +299,39 @@ export const INSPECTION_CATEGORIES: InspectionCategory[] = [
     ],
   },
 ];
+
+/**
+ * GTA cities/areas served. Starts from the site's existing authoritative
+ * list (Brampton, Mississauga, Milton, Vaughan, Etobicoke — plus the
+ * 401/407/410 corridor note) and expands it with the rest of the GTA,
+ * deduplicated. Update here if coverage changes.
+ */
+export const SERVICE_AREAS: string[] = Array.from(
+  new Set([
+    "Brampton",
+    "Mississauga",
+    "Milton",
+    "Vaughan",
+    "Etobicoke",
+    "Toronto",
+    "Markham",
+    "Richmond Hill",
+    "Oakville",
+    "Burlington",
+    "Caledon",
+    "Bolton",
+    "Georgetown",
+    "Ajax",
+    "Pickering",
+    "Whitby",
+    "Oshawa",
+    "Scarborough",
+    "North York",
+    "East York",
+  ]),
+);
+
+export const SERVICE_AREA_HIGHWAYS = "Highway 401 / 407 / 410";
 
 export const FEATURED_SERVICES = [
   {

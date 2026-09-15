@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import { LocateFixed, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 
-import { BUSINESS } from "@/lib/site";
+import { BUSINESS, whatsappHref } from "@/lib/site";
 import { EASE_OUT } from "@/components/motion";
 
 export function FloatingCall() {
@@ -14,11 +14,7 @@ export function FloatingCall() {
 
   function shareLocation() {
     const openWhatsApp = (message: string) => {
-      window.open(
-        `https://wa.me/14169182630?text=${encodeURIComponent(message)}`,
-        "_blank",
-        "noopener,noreferrer",
-      );
+      window.open(whatsappHref(message), "_blank", "noopener,noreferrer");
     };
     if (!navigator.geolocation) {
       openWhatsApp(`Breakdown near Brampton. Please call me at ${BUSINESS.phoneDisplay}.`);
@@ -71,7 +67,7 @@ export function FloatingCall() {
             <LocateFixed className="h-4 w-4" />
           </button>
           <a
-            href="https://wa.me/14169182630"
+            href={whatsappHref()}
             target="_blank"
             rel="noreferrer"
             aria-label="Open WhatsApp"
