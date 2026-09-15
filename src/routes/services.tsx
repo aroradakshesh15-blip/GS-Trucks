@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { EmergencyCta } from "@/components/emergency-cta";
 import { FloatingCall } from "@/components/floating-call";
+import { InstantQuote } from "@/components/instant-quote";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { EASE_OUT, Eyebrow, Reveal, StaggerHeading } from "@/components/motion";
@@ -158,6 +159,7 @@ function ServicesPage() {
           </div>
         </section>
 
+        <InstantQuote />
         <ProposalTools />
 
         <EmergencyCta />

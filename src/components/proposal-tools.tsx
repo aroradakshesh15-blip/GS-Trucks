@@ -10,21 +10,11 @@ import {
   Navigation,
   Send,
   Truck,
-  WalletCards,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { BUSINESS } from "@/lib/site";
 import { cn } from "@/lib/utils";
-
-const quoteServices = [
-  ["Brakes & air system", 450],
-  ["Annual safety inspection", 180],
-  ["Electrical / computer diagnostics", 320],
-  ["Engine repair", 1400],
-  ["Tires & wheels", 260],
-  ["Trailer bodywork", 700],
-] as const;
 
 const fleetUnits = [
   {
@@ -57,17 +47,6 @@ const fleetUnits = [
       "Book the next open bay below",
     ],
   },
-];
-
-const slots = [
-  "7:00 AM",
-  "8:30 AM",
-  "10:00 AM",
-  "11:30 AM",
-  "1:00 PM",
-  "2:30 PM",
-  "4:00 PM",
-  "5:30 PM",
 ];
 
 function ToolShell({
@@ -115,14 +94,12 @@ export function ProposalTools() {
           Less waiting. More certainty.
         </h2>
         <p className="mt-5 max-w-2xl text-muted-foreground">
-          Useful tools for the moments before and after a repair. Estimates are ballpark only; the
-          shop confirms scope and pricing before work begins.
+          Useful tools for the moments before and after a repair. For a quote or to book a bay, use
+          the Instant Quote tool above.
         </p>
         <div className="mt-8 grid gap-5 lg:grid-cols-2">
           <LocationTool />
-          <QuoteTool />
           <InspectionTool />
-          <BookingTool />
           <FleetTool />
           <LanguageTool />
         </div>
@@ -183,68 +160,6 @@ function LocationTool() {
   );
 }
 
-function QuoteTool() {
-  const [service, setService] = useState(450);
-  const [where, setWhere] = useState(1);
-  const [urgency, setUrgency] = useState(1);
-  const [shown, setShown] = useState(false);
-  const midpoint = service * where * urgency;
-  const low = Math.round((midpoint * 0.78) / 10) * 10;
-  const high = Math.round((midpoint * 1.32) / 10) * 10;
-  return (
-    <ToolShell
-      title="Instant ballpark quote"
-      detail="Get a planning range before you call. Parts and diagnosis can change the final quote."
-      icon={WalletCards}
-    >
-      <div className="grid gap-3 sm:grid-cols-3">
-        <ToolSelect
-          label="Service"
-          value={service}
-          onChange={(e) => setService(Number(e.target.value))}
-          options={quoteServices.map(([label, value]) => [label, value])}
-        />
-        <ToolSelect
-          label="Where"
-          value={where}
-          onChange={(e) => setWhere(Number(e.target.value))}
-          options={[
-            ["In shop", 1],
-            ["Mobile call-out", 1.45],
-          ]}
-        />
-        <ToolSelect
-          label="When"
-          value={urgency}
-          onChange={(e) => setUrgency(Number(e.target.value))}
-          options={[
-            ["This week", 1],
-            ["After hours", 1.3],
-          ]}
-        />
-      </div>
-      <button
-        type="button"
-        onClick={() => setShown(true)}
-        className="mt-4 flex min-h-12 w-full items-center justify-center gap-3 border border-primary bg-transparent px-5 py-3 font-display tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-      >
-        Show my range
-      </button>
-      {shown && (
-        <Readout title="Estimated range">
-          <strong className="font-display text-2xl text-foreground">
-            CAD ${low.toLocaleString()} - ${high.toLocaleString()}
-          </strong>
-          <span className="mt-1 block">
-            A written quote follows diagnosis. {where > 1 ? "Mobile call-out included. " : ""}
-            {urgency > 1 ? "After-hours rate applied." : ""}
-          </span>
-        </Readout>
-      )}
-    </ToolShell>
-  );
-}
-
 function InspectionTool() {
   const initial = new Date();
   initial.setMonth(initial.getMonth() + 2);
@@ -287,88 +202,6 @@ function InspectionTool() {
         <Readout title="Reminder schedule">
           This browser will remember the date. Add it to your calendar or contact the shop to book
           the next open bay. Email and SMS automation require a connected service.
-        </Readout>
-      )}
-    </ToolShell>
-  );
-}
-
-function BookingTool() {
-  const [day, setDay] = useState(1);
-  const [slot, setSlot] = useState<string | null>(null);
-  const days = Array.from({ length: 5 }, (_, index) => {
-    const date = new Date();
-    date.setDate(date.getDate() + index);
-    return {
-      index,
-      label: date.toLocaleDateString("en-CA", { weekday: "short" }).toUpperCase(),
-      date: date.getDate(),
-    };
-  });
-  const selected = days[day];
-  const dateLabel = selected ? `${selected.label} ${selected.date}` : "selected day";
-  return (
-    <ToolShell
-      title="Bay booking"
-      detail="Choose a preferred shop slot, then send the request to the team without tying up the emergency line."
-      icon={CalendarDays}
-    >
-      <div className="grid grid-cols-5 gap-2">
-        {days.map((item) => (
-          <button
-            key={item.index}
-            type="button"
-            onClick={() => {
-              setDay(item.index);
-              setSlot(null);
-            }}
-            className={cn(
-              "border px-2 py-3 text-center font-display text-sm",
-              day === item.index
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border text-muted-foreground hover:border-primary hover:text-primary",
-            )}
-          >
-            <span className="block text-xs">{item.label}</span>
-            {item.date}
-          </button>
-        ))}
-      </div>
-      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-        {slots.map((item, index) => {
-          const unavailable = (day + index) % 5 === 0;
-          return (
-            <button
-              key={item}
-              type="button"
-              disabled={unavailable}
-              onClick={() => setSlot(item)}
-              className={cn(
-                "border px-2 py-3 text-sm transition-colors",
-                unavailable
-                  ? "cursor-not-allowed border-border/40 text-muted-foreground/40 line-through"
-                  : slot === item
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border hover:border-primary hover:text-primary",
-              )}
-            >
-              {item}
-            </button>
-          );
-        })}
-      </div>
-      {slot && (
-        <Readout title="Preferred slot">
-          <strong className="text-foreground">
-            {dateLabel} at {slot}
-          </strong>
-          <a
-            className="mt-3 inline-flex items-center gap-2 text-foreground underline decoration-primary underline-offset-4"
-            href={`mailto:${BUSINESS.email}?subject=${encodeURIComponent(`Bay booking request - ${dateLabel} ${slot}`)}&body=${encodeURIComponent("Please confirm the unit number, service needed and this preferred slot.")}`}
-          >
-            <Send className="h-4 w-4" />
-            Send booking request
-          </a>
         </Readout>
       )}
     </ToolShell>
@@ -465,35 +298,6 @@ function LanguageTool() {
         <p className="mt-2 text-sm text-muted-foreground">{copy.body}</p>
       </div>
     </ToolShell>
-  );
-}
-
-function ToolSelect({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string;
-  value: number;
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  options: readonly (readonly [string, number])[];
-}) {
-  return (
-    <label className="block">
-      <span className="label-tech text-muted-foreground">{label}</span>
-      <select
-        value={value}
-        onChange={onChange}
-        className="mt-2 w-full border border-border bg-background px-3 py-3 text-sm text-foreground outline-none focus:border-primary"
-      >
-        {options.map(([name, optionValue]) => (
-          <option key={name} value={optionValue}>
-            {name}
-          </option>
-        ))}
-      </select>
-    </label>
   );
 }
 
