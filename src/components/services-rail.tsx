@@ -52,7 +52,7 @@ export function ServicesRail() {
       <div className="grid-plate pointer-events-none absolute inset-0 opacity-[0.08]" />
       <div className="pointer-events-none absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/60 to-transparent lg:left-[7vw]" />
 
-      <div className="services-sticky sticky top-0 flex h-[100svh] flex-col justify-start overflow-x-hidden pb-10 pt-28 lg:pt-32">
+      <div className="services-sticky sticky top-0 flex h-[100svh] flex-col justify-start pb-10 pt-28 lg:pt-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <div>
