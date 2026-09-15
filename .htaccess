@@ -1,0 +1,28 @@
+# GS Trucks - SPA routing fallback for Apache (Hostinger)
+# Serves index.html for any route that isn't a real file/directory so that
+# client-side routing (TanStack Router) works correctly on hard refresh
+# and direct navigation to nested routes (e.g. /fleet, /contact).
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # If the request is for an existing file or directory, serve it directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Otherwise, fall back to index.html so the client-side router can handle it
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Basic caching for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
