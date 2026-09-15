@@ -52,7 +52,7 @@ export function ServicesRail() {
       <div className="grid-plate pointer-events-none absolute inset-0 opacity-[0.08]" />
       <div className="pointer-events-none absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/60 to-transparent lg:left-[7vw]" />
 
-      <div className="services-sticky sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden">
+      <div className="services-sticky sticky top-0 flex h-[100svh] flex-col justify-start overflow-x-hidden pb-8 pt-28 lg:pt-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
             <div>
@@ -96,7 +96,7 @@ export function ServicesRail() {
             <motion.article
               key={s.title}
               className={cn(
-                "service-card group relative flex h-[54vh] w-[78vw] shrink-0 flex-col overflow-hidden border border-border/80 bg-[#171b1d] transition-colors hover:border-primary sm:w-[42vw] lg:w-[28vw]",
+                "service-card group relative flex h-[min(54vh,30rem)] w-[78vw] shrink-0 flex-col overflow-hidden border border-border/80 bg-[#171b1d] transition-colors hover:border-primary sm:w-[42vw] lg:w-[28vw]",
                 i === 0 && "lg:w-[34vw]",
               )}
               initial={{ opacity: 0, y: 36 }}
@@ -147,7 +147,7 @@ export function ServicesRail() {
             </motion.article>
           ))}
 
-          <div className="relative flex h-[54vh] w-[78vw] shrink-0 flex-col justify-between overflow-hidden border border-primary/50 bg-primary/[0.08] p-7 sm:w-[42vw] lg:w-[30vw]">
+          <div className="relative flex h-[min(54vh,30rem)] w-[78vw] shrink-0 flex-col justify-between overflow-hidden border border-primary/50 bg-primary/[0.08] p-7 sm:w-[42vw] lg:w-[30vw]">
             <span className="pointer-events-none absolute -right-7 -top-10 font-display text-[11rem] leading-none text-primary/[0.08]">
               +
             </span>
