@@ -11,13 +11,10 @@ import { BUSINESS } from "@/lib/site";
 import { EASE_OUT } from "@/components/motion";
 
 /**
- * Place the final hero background video at this path (create the
- * `videos` folder under `public/` if it doesn't exist yet):
- *   public/videos/hero-background.mp4
- * Recommended: 1920x1080, H.264 mp4, muted, <10s loop, <6MB.
- * If the file is missing, the browser simply fails to load the <video>
- * source and the static hero image underneath is shown instead — the
- * hero never breaks.
+ * Hero background video, served from public/videos/hero-background.mp4
+ * (1920x1080 H.264, ~11MB). If this file is ever missing, the browser
+ * simply fails to load the <video> source and the static hero image
+ * underneath is shown instead — the hero never breaks.
  */
 const HERO_VIDEO_SRC = "/videos/hero-background.mp4";
 
@@ -50,19 +47,19 @@ export function Hero() {
           alt=""
           width={1920}
           height={1088}
-          className="h-full w-full object-cover opacity-85"
+          className="h-full w-full object-cover"
           initial={reduce ? false : { opacity: 0, scale: 1.09 }}
-          animate={{ opacity: 0.85, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
         />
         {!reduce && (
           <video
-            className="absolute inset-0 h-full w-full object-cover opacity-85"
+            className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             muted
             loop
             playsInline
-            preload="none"
+            preload="auto"
             poster={heroRoadside}
             aria-hidden="true"
             tabIndex={-1}
@@ -70,8 +67,11 @@ export function Hero() {
             <source src={HERO_VIDEO_SRC} type="video/mp4" />
           </video>
         )}
-        <div className="absolute inset-0 bg-background/65" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/80" />
+        {/* Subtle uniform tint + a bottom-weighted gradient so the video reads
+           clearly through the middle/top while the text zone at the bottom
+           still has strong contrast. */}
+        <div className="absolute inset-0 bg-background/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/15 to-background/55" />
       </motion.div>
 
       {/* Layer 2 — technical grid + light shaft */}
